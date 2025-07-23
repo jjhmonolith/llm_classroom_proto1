@@ -10,23 +10,39 @@
 - **적응형 가이드**: AI 생성 주제별 맞춤 학습 가이드
 - **주제 관리**: 학습 주제에서 벗어나지 않도록 하는 스마트 가이드
 
+### 🌐 배포 정보
+- **프로덕션 URL**: http://3.107.236.141
+- **호스팅**: AWS EC2 (t3.micro, Sydney Region)
+- **웹서버**: Nginx + Uvicorn
+- **배포일**: 2025년 7월 23일
+
 ---
 
 ## 🏗 시스템 아키텍처
 
 ### 전체 구조도
 ```
-[Frontend] ←→ [FastAPI Backend] ←→ [OpenAI GPT-4o-mini]
-     ↓              ↓                      ↓
-Topic Selection   API Routes          Chat AI
-Chat Interface   Service Layer       Tutor AI  
-Tutor Feedback   Business Logic      Guide Generator
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   Client (Web)  │────▶│   AWS EC2       │────▶│  OpenAI API     │
+│   Browser       │     │   Nginx:80      │     │  GPT-4o-mini    │
+└─────────────────┘     │   FastAPI:8000  │     └─────────────────┘
+                        └─────────────────┘
+                               │
+                        ┌──────┴──────┐
+                        │             │
+                  ┌─────▼─────┐ ┌─────▼─────┐
+                  │  Frontend  │ │  Backend   │
+                  │  (Static)  │ │ (FastAPI)  │
+                  └────────────┘ └────────────┘
 ```
 
 ### 기술 스택
-- **Backend**: FastAPI (Python)
+- **Backend**: FastAPI (Python 3.11)
 - **AI Model**: OpenAI GPT-4o-mini
 - **Frontend**: Vanilla HTML/CSS/JavaScript
+- **웹서버**: Nginx 1.18.0 (리버스 프록시)
+- **WSGI**: Uvicorn
+- **OS**: Ubuntu 22.04 LTS
 - **Architecture**: RESTful API, Service Layer Pattern
 
 ---
@@ -377,9 +393,62 @@ def _parse_feedback(self, feedback_text: str) -> Dict[str, Any]:
 
 ---
 
+## 🔗 배포 및 운영
+
+### 1. AWS 배포 구성
+- **인스턴스**: EC2 t3.micro (프리티어)
+- **IP 주소**: 3.107.236.141 (Elastic IP)
+- **리전**: ap-southeast-2 (Sydney)
+- **보안 그룹**: HTTP(80), HTTPS(443), SSH(22), Custom TCP(8000)
+
+### 2. 서비스 관리
+```bash
+# 서비스 상태 확인
+sudo systemctl status llm-classroom
+
+# 서비스 재시작
+sudo systemctl restart llm-classroom
+
+# 로그 확인
+sudo journalctl -u llm-classroom -f
+```
+
+### 3. 업데이트 프로세스
+```bash
+# 코드 업데이트
+cd ~/llm_classroom_proto1
+git pull origin main
+
+# 의존성 업데이트
+source venv/bin/activate
+pip install -r requirements.txt
+
+# 서비스 재시작
+sudo systemctl restart llm-classroom
+```
+
+### 4. 모니터링
+- **Nginx 로그**: `/var/log/nginx/`
+- **애플리케이션 로그**: `journalctl -u llm-classroom`
+- **시스템 리소스**: `htop`, `df -h`
+
+---
+
+## 📁 관련 문서
+
+- **[AWS 배포 기술 문서](AWS_DEPLOYMENT_TECHNICAL_GUIDE.md)**: 상세한 배포 과정 및 트러블슈팅 가이드
+- **[AWS 배포 가이드](AWS_DEPLOYMENT_GUIDE.md)**: 단계별 배포 방법
+- **[GitHub 리포지토리](https://github.com/jjhmonolith/llm_classroom_proto1)**: 소스 코드
+
+---
+
 ## 📝 결론
 
 LLM Classroom은 중학생들의 AI 활용 능력 향상을 목표로 하는 혁신적인 에듀테크 플랫폼입니다. 듀얼 AI 시스템, 지능형 주제 관리, 실시간 피드백 등의 핵심 기능을 통해 학생들이 효과적으로 AI와 대화하며 학습할 수 있는 환경을 제공합니다.
+
+현재 AWS EC2에 성공적으로 배포되어 운영 중이며, 지속적인 개선과 확장을 통해 더 나은 교육 경험을 제공할 예정입니다.
+
+**마지막 업데이트**: 2025년 7월 23일
 
 특히 GPT-4o-mini를 활용한 비용 효율적이면서도 고품질의 AI 서비스와, 교육학적 원리에 기반한 체계적인 피드백 시스템이 이 플랫폼의 핵심 경쟁력입니다.
 
