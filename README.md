@@ -1,10 +1,26 @@
-# LLM Classroom
+# 🎓 LLM Classroom
 
-중학생을 위한 AI 교육 플랫폼 - 학생들이 LLM과 효과적으로 소통하는 방법을 배우는 온라인 에듀테크 도구
+**AI와 함께하는 새로운 학습 경험** - 중학생을 위한 지능형 교육 플랫폼
 
-## 🎯 프로젝트 목적
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-3.107.236.141-blue?style=for-the-badge)](http://3.107.236.141)
+[![GitHub](https://img.shields.io/badge/GitHub-Source%20Code-black?style=for-the-badge&logo=github)](https://github.com/jjhmonolith/llm_classroom_proto1)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-LLM Classroom은 중학생들이 대화형 AI와 효과적으로 소통하는 방법을 배우고, 실시간 AI 튜터의 피드백을 통해 학습 효과를 극대화할 수 있는 교육용 플랫폼입니다.
+> 💡 **혁신적인 듀얼 AI 시스템**으로 학생들이 AI와 효과적으로 소통하는 방법을 배우고, 실시간 튜터 피드백을 통해 학습 효과를 극대화하는 교육 플랫폼
+
+## 🌟 서비스 소개
+
+LLM Classroom은 단순히 AI와 대화하는 것을 넘어서, **교육적 가치**를 극대화하는 차세대 에듀테크 플랫폼입니다.
+
+### 🎯 해결하는 문제
+- ❌ AI를 단순 답변 기계로만 사용하는 학생들
+- ❌ 효과적인 질문 방법을 모르는 학생들  
+- ❌ AI와의 대화가 학습으로 연결되지 않는 문제
+
+### ✅ 우리의 해결책
+- 🤖 **듀얼 AI 시스템**: 채팅 AI + 교육 전문 튜터 AI
+- 📚 **체계적 학습 가이드**: 주제별 맞춤형 학습 경로 제공
+- 💡 **실시간 피드백**: 질문 방식과 사고 과정 개선 코칭
 
 ## ✨ 주요 기능
 
@@ -29,40 +45,41 @@ LLM Classroom은 중학생들이 대화형 AI와 효과적으로 소통하는 �
 - **Deployment**: Docker, AWS EC2, Nginx
 - **Version Control**: Git, GitHub
 
-## 🚀 설치 및 실행
+## 🚀 빠른 시작
 
-### 로컬 환경
+### 🌐 온라인 체험 (권장)
+**바로 사용해보세요!** ✨
+```
+📱 웹브라우저에서: http://3.107.236.141
+```
+
+### 💻 로컬 개발 환경
 ```bash
-# 프로젝트 클론
+# 1. 프로젝트 클론
 git clone https://github.com/jjhmonolith/llm_classroom_proto1.git
 cd llm_classroom_proto1
 
-# 가상환경 생성 및 활성화
-python -m venv venv
+# 2. 가상환경 설정
+python3.11 -m venv venv
 source venv/bin/activate  # macOS/Linux
 
-# 의존성 설치
+# 3. 의존성 설치
 pip install -r requirements.txt
 
-# 환경변수 설정
+# 4. 환경변수 설정
 cp .env.example .env
-# .env 파일에서 OPENAI_API_KEY 설정
+echo "OPENAI_API_KEY=your-api-key-here" >> .env
 
-# 서버 실행
-python main.py
+# 5. 서버 실행
+uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
-### Docker 실행
+### 🐳 Docker 실행
 ```bash
-# Docker 이미지 빌드
+# Docker 이미지 빌드 및 실행
 docker build -t llm-classroom .
-
-# 컨테이너 실행
 docker run -p 8000:8000 --env-file .env llm-classroom
 ```
-
-### AWS 배포
-상세한 AWS 배포 가이드는 [AWS_DEPLOYMENT_GUIDE.md](AWS_DEPLOYMENT_GUIDE.md)를 참고하세요.
 
 ## 📁 프로젝트 구조
 
@@ -127,10 +144,44 @@ llm_classroom_proto1/
 
 이 프로젝트는 MIT 라이센스 하에 배포됩니다.
 
-## 🆔 버전
+## 🔗 링크 및 리소스
 
-**v1.0** - 2024년 초기 릴리즈
-- 듀얼 AI 시스템 구현
-- 실시간 튜터 피드백
-- AWS 배포 지원
-- 마크다운 렌더링
+### 📚 문서
+- **[사용자 가이드](USER_GUIDE.md)**: 서비스 사용법 상세 안내
+- **[기술 문서](TECHNICAL_DOCUMENTATION.md)**: 시스템 아키텍처 및 구현 세부사항
+- **[AWS 배포 가이드](AWS_DEPLOYMENT_GUIDE.md)**: 단계별 배포 방법
+- **[AWS 배포 기술 문서](AWS_DEPLOYMENT_TECHNICAL_GUIDE.md)**: 상세 배포 기술 가이드
+
+### 🌐 서비스
+- **[라이브 데모](http://3.107.236.141)**: 실제 서비스 체험
+- **[GitHub 리포지토리](https://github.com/jjhmonolith/llm_classroom_proto1)**: 소스 코드
+
+### 📊 성과 지표
+- **응답 속도**: 평균 2-3초 (GPT-4o-mini 최적화)
+- **지원 주제**: 6개 기본 주제 + 무제한 커스텀 주제
+- **동시 사용자**: 다중 사용자 지원 (AWS EC2 기반)
+
+## 🎯 교육적 효과
+
+### 학생에게
+- ✅ **질문 스킬 향상**: 더 구체적이고 효과적인 질문 방법 학습
+- ✅ **비판적 사고**: AI 답변을 분석하고 추가 질문하는 능력 개발
+- ✅ **자기주도 학습**: 스스로 탐구하고 학습하는 습관 형성
+- ✅ **디지털 리터러시**: AI 시대 필수 소양 습득
+
+### 교육 현장에
+- ✅ **개별 맞춤 학습**: 각자의 속도와 관심사에 맞는 학습 지원
+- ✅ **24시간 학습 지원**: 언제든지 접근 가능한 AI 튜터
+- ✅ **교사 보조 도구**: 교사의 개별 지도를 보완하는 도구
+- ✅ **미래 교육 대비**: AI 시대 교육 모델 선도
+
+## 📈 버전 히스토리
+
+### **v1.0** (2025.07.23) - 현재 버전
+- 🚀 **AWS 프로덕션 배포** 완료
+- 🤖 **듀얼 AI 시스템** 구현 (ChatGPT + 튜터 AI)
+- 📚 **6개 학습 주제** 지원 + 커스텀 주제
+- 💡 **실시간 튜터 피드백** 시스템
+- 🎨 **반응형 웹 인터페이스** (6:4 레이아웃)
+- 🔒 **CORS 및 보안** 설정 완료
+- 📱 **다중 디바이스** 지원 (PC, 태블릿, 모바일)
