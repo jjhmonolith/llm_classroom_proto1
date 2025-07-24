@@ -396,7 +396,7 @@
         // 주제에 맞는 초기 AI 인사 메시지 가져오기
         async function addInitialAIMessage() {
             try {
-                const response = await fetch('http://localhost:8001/api/v1/chat/initial-message', {
+                const response = await fetch('/api/v1/chat/initial-message', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -445,7 +445,7 @@
             }
             
             try {
-                const response = await fetch('http://localhost:8001/api/v1/chat/initial-guide', {
+                const response = await fetch('/api/v1/chat/initial-guide', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -736,7 +736,7 @@
             const loadingMessage = addLoadingMessage();
             
             try {
-                const response = await fetch('http://localhost:8001/api/v1/chat/chat', {
+                const response = await fetch('/api/v1/chat/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

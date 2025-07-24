@@ -30,9 +30,9 @@ async def api_root():
 
 @app.get("/")
 async def root():
-    # 기본 페이지를 주제 선택 페이지로 리다이렉트
+    # 서브도메인에서는 바로 메인 페이지 제공
     from fastapi.responses import RedirectResponse
-    return RedirectResponse(url="/topic-selection.html")
+    return RedirectResponse(url="/index.html")
 
 # Static files for frontend (이것은 마지막에 와야 함)
 app.mount("/", StaticFiles(directory="frontend", html=True), name="static")
