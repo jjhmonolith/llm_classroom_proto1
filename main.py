@@ -32,7 +32,7 @@ async def api_root():
 async def root():
     # 서브도메인에서는 바로 메인 페이지 제공
     from fastapi.responses import RedirectResponse
-    return RedirectResponse(url="/index.html")
+    return RedirectResponse(url="/topic-selection.html")
 
 # Static files for frontend (이것은 마지막에 와야 함)
 app.mount("/", StaticFiles(directory="frontend", html=True), name="static")
